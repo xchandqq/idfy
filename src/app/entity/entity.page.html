@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" shape="round" (click)="onDelete()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked" color="primary">Name</ion-label>
+    <ion-input type="text" readonly [(ngModel)]="modelName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" color="primary">Number</ion-label>
+    <ion-input type="text" readonly [(ngModel)]="modelNumber"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" color="primary">Notes</ion-label>
+    <ion-textarea type="text" readonly [(ngModel)]="modelNotes" autoGrow></ion-textarea>
+  </ion-item>
+</ion-content>

@@ -1,5 +1,7 @@
 {
   "name": "idfy",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

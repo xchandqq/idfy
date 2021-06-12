@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'create-entity',
+    loadChildren: () => import('./create-entity/create-entity.module').then( m => m.CreateEntityPageModule)
+  },
+  {
+    path: 'entity',
+    loadChildren: () => import('./entity/entity.module').then( m => m.EntityPageModule)
+  },
 ];
 
 @NgModule({

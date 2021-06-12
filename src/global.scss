@@ -24,3 +24,27 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.alertButtonSelected {
+    background: var(--ion-color-primary) !important;
+    color: white !important;
+}
+
+.md .alertButtonSelected {
+    border-radius: 40px !important;
+}
+
+.alertCancelButton{
+    color: var(--ion-color-danger) !important;
+}
+
+.md .alertCancelButton{
+    font-weight: bold !important;
+}
+
+// SEARCH BAR
+.md .searchbar-input {
+    --box-shadow: none;
+    --background: var(--ion-color-light-shade);
+    --border-radius: 21px;
+}

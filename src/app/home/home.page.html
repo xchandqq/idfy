@@ -1,20 +1,52 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title *ngIf="!searchEnabled">
+      Home
     </ion-title>
+    <div class="search-panel-wrap" *ngIf="searchEnabled">
+      <ion-button class="search-toggle-button" color="dark" fill="clear" shape="round" (click)="onToggleSearch()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+      <ion-searchbar placeholder="Search" (ionChange)="onSearchChange($event)" [debounce]="250" [(ngModel)]="searchKeyword"></ion-searchbar>
+    </div>
+    <ion-buttons slot="end" *ngIf="!searchEnabled">
+      <ion-button fill="clear" shape="round" (click)="onToggleSearch()">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/create-entity']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  <div class="items-wrap">
+    <ion-item class="item-entity" *ngFor="let entity of getEntityList()" [routerLink]="['/entity', entity.id]">
+      <div class="item-entity-wrap">
+        <h4 class="item-entity-title" [innerText]="entity.title"></h4>
+        <p class="item-entity-group" *ngIf="entity.groupId != -1" [innerText]="entity.groupId"></p>
+        <p class="item-entity-number" [innerText]="entity.number"></p>
+      </div>
+    </ion-item>
   </div>
+
+  <div *ngIf="!searchEnabled && getEntityList().length==0 && hasDatabase" class="empty-content-wrap">
+    <h2 class="empty-content-heading">
+      Oops!
+    </h2>
+    <p>
+      Looks like you have not added any entities yet.
+    </p>
+  </div>
+
+  <div class="no-search-result-wrap" *ngIf="searchEnabled && entityList.length > 0 && filteredEntityList.length == 0">
+    <p>We cannot find what you are looking for</p>
+  </div>
+
 </ion-content>

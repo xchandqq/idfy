@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add new entity</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div #nameValidationWrap>
+    <ion-item>
+      <ion-icon name="id-card" slot="start" color="medium"></ion-icon>
+      <ion-label position="stacked" color="primary">Name</ion-label>
+      <ion-input (keyup)="onKeyUp(true, $event)" enterkeyhint="Next" type="text" placeholder="(ex. Passport ID)" autocapitalize="words" maxlength="32" [(ngModel)]="modelName" (ionFocus)="onFocusNameInput()"></ion-input>
+    </ion-item>
+    <span class="validation-message" [innerText]="modelNameValidation"></span>
+  </div>
+
+  <div #numberValidationWrap>
+    <ion-item>
+      <ion-icon name="card" slot="start" color="medium"></ion-icon>
+      <ion-label position="stacked" color="primary">Number</ion-label>
+      <ion-input (keyup)="onKeyUp(false, $event)" #numberInput enterkeyhint="Next" type="text" placeholder="(ex. 1-2345-6789-0)" autocapitalize="words" maxlength="32" [(ngModel)]="modelNumber" (ionFocus)="onFocusNumberInput()"></ion-input>
+    </ion-item>
+    <span class="validation-message" [innerText]="modelNumberValidation"></span>
+  </div>
+
+  <ion-item>
+    <ion-icon name="document" slot="start" color="medium"></ion-icon>
+    <ion-label position="stacked" color="primary">Notes</ion-label>
+    <ion-textarea #notesTextArea type="text" placeholder="Type notes you want to remember" autocapitalize="words" autoGrow maxlength="180" [(ngModel)]="modelNotes"></ion-textarea>
+  </ion-item>
+
+  <div #userNoticeWrap class="user-notice-wrap">
+    <ion-icon name="information-circle" slot="start" color="medium"></ion-icon>
+    <div>
+      <p class="user-notice-text">
+        Upon adding information above, you agree to our <a href="#">Privacy Notice</a> regarding collection of user data.
+      </p>
+      <p>Remember, we do not store user or entity information online.</p>
+    </div>
+  </div>
+  
+  <div class="control-wrap" slot="fixed">
+    <ion-button fill="clear" shape="round" color="medium" (click)="onCancel()">Cancel</ion-button>
+    <ion-button fill="clear" shape="round" color="primary" (click)="onFinish()">Finish</ion-button>
+  </div>
+</ion-content>
